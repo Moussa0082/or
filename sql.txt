@@ -1,0 +1,47 @@
+----------Users -------------
+CREATE TABLE Utilisateurs (
+    IDUtilisateur INT PRIMARY KEY,
+    Nom VARCHAR(50),
+    Prénom VARCHAR(50),
+    Email VARCHAR(100),
+    MotDePasse VARCHAR(100),
+    Type VARCHAR(20)
+);
+
+---------Commandes-----------
+CREATE TABLE Commandes (
+    IDCommande INT PRIMARY KEY,
+    IDUtilisateur INT,
+    DateCommande DATE,
+    Statut VARCHAR(20),
+    Quantité INT,
+    FOREIGN KEY (IDUtilisateur) REFERENCES Utilisateurs(IDUtilisateur)
+);
+-----------Produits-------------
+CREATE TABLE Produits (
+    IDProduit INT PRIMARY KEY,
+    NomProduit VARCHAR(100),
+    Description VARCHAR(255),
+    StockDisponible INT,
+    PrixUnitaire DECIMAL(10, 2)
+);
+
+----------Admin-----------
+CREATE TABLE Admins (
+    IDAdmin INT PRIMARY KEY,
+    Nom VARCHAR(50),
+    Prénom VARCHAR(50),
+    Email VARCHAR(100),
+    MotDePasse VARCHAR(100)
+);
+
+-------------Ventes ------------
+CREATE TABLE Ventes (
+    IDVente INT PRIMARY KEY,
+    IDCommande INT,
+    DateVente DATE,
+    MontantVente DECIMAL(10, 2),
+    FOREIGN KEY (IDCommande) REFERENCES Commandes(IDCommande)
+);
+
+
